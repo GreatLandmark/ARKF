@@ -1,7 +1,9 @@
 # ARKF, Knowledge Forest AR Visualization System, 知识森林AR可视化系统
+
 > 西安交通大学，陕西省天地网技术重点实验室。
 > Shannxi Key Lab. of Satellite-Terrestrial Network Tech. R&D , Xi'an JiaoTong University.
 
+![icon](https://greatlandmark.coding.net/api/share/download/8a046870-c8eb-44c7-8f04-95f82c47b617)
 ## 目录 Contents
 +  [描述 Description](#描述-description)
 +  [下载 Download](#下载-download)
@@ -24,12 +26,13 @@ ARKF已经包含6门计算机学科的高等教育课程，5门小学课程，23
 
 ## 下载 Download
 目前发布的产品有iOS版本和Android版本。
-- iOS : 
+- 苹果 iOS : 
 - - 请在[Apple App Store](https://apps.apple.com/cn/app/arkf/id1501738374)下载，搜索 ARKF。
 - - 或者[点击这里](https://apps.apple.com/cn/app/arkf/id1501738374)跳转到下载地址。
 
-- Android: 
-- - 点击下载[ARKF v1.71](https://greatlandmark.coding.net/api/share/download/8fa51b06-52b5-4502-b514-fb7145120a51)。
+- 安卓 Android: 
+- - 下载链接1 : [ARKF v1.71](https://greatlandmark.coding.net/api/share/download/8fa51b06-52b5-4502-b514-fb7145120a51 "coding") 。
+- - 下载链接2 : [ARKF v1.71](https://gitee.com/greatlandmark/ARKF/attach_files/352827/download "gitee") 。
 - - 或者请前往 发行版本(Releases) 下载。
 
 ## 支持 Support
