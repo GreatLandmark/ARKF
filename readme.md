@@ -16,8 +16,10 @@ ARKF已经包含6门计算机学科的高等教育课程，5门小学课程，23
 - 3、目前已实现包括中小学及高等教育在内的51门课程的展示。除此51门课程以外的知识森林暂时不支持显示。我们正在努力构建更多的课程，丰富学习内容。
 
 ## 下载
-- iOS: [Apple App Store](https://apps.apple.com/cn/app/arkf/id1501738374)
-- Android: 请前往 发行版(Releases) 下载
+- iOS：
+请在[Apple App Store](https://apps.apple.com/cn/app/arkf/id1501738374)下载
+
+- Android: 请前往 发行版(Releases) 下载；或者点击下载[ARKF v1.71](https://gitee.com/greatlandmark/ARKF/attach_files/352827/download)
 
 ## About
 [技术支持网站](http://yotta.xjtushilei.com:888/ARKF/)
