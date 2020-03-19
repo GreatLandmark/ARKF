@@ -1,4 +1,4 @@
-# ARKF,Knowledge Forest AR Visualization System, 知识森林AR可视化系统
+# ARKF, Knowledge Forest AR Visualization System, 知识森林AR可视化系统
 > 西安交通大学，陕西省天地网技术重点实验室。
 > Shannxi Key Lab. of Satellite-Terrestrial Network Tech. R&D , Xi'an JiaoTong University.
 
@@ -17,7 +17,7 @@ ARKF已经包含6门计算机学科的高等教育课程，5门小学课程，23
 
 ## 下载
 - iOS: [Apple App Store](https://apps.apple.com/cn/app/arkf/id1501738374)
-- Android: ...联系email: greatlandmark@outlook.com
+- Android: 请前往 发行版(Releases) 下载
 
 ## About
 [技术支持网站](http://yotta.xjtushilei.com:888/ARKF/)
