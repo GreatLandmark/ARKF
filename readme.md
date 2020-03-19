@@ -3,12 +3,12 @@
 > Shannxi Key Lab. of Satellite-Terrestrial Network Tech. R&D , Xi'an JiaoTong University.
 
 ## 目录 Contents
-+ ### [描述 Description](#描述)
-+ ### [下载 Download](#下载-Download)
-+ ### [支持 Support](#支持-support)
-+ ### [关于团队 About Team](#关于团队-About-Team)
++  [描述 Description](#描述-description)
++  [下载 Download](#下载-download)
++  [支持 Support](#支持-support)
++  [关于团队 About Team](#关于团队-about-team)
 
-## 描述
+## 描述 Description
 ARKF是一款AR导航学习系统。相比传统的教育应用，我们将爆炸式增长的知识聚合成新型知识图谱——知识森林，将知识以更生动，更富有趣味的方式展示出来，利用AR技术将知识森林进行了三维的可视化。
 
 ARKF已经包含6门计算机学科的高等教育课程，5门小学课程，23门初中课程以及17门高中课程，共计51门的课程的知识森林。只要打开ARKF，扫描相关课本的扉页或者封面，就可以识别进而查看此课程的知识森林，扫描书本的任意一页，就可以看到这一页所有的关键词。点击自己感兴趣的或者想要学习的关键词，ARKF将自动构建此关键词的知识树。点击知识树上的小球，您就可以学习任何你想学习的知识碎片啦！
