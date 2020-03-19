@@ -1,5 +1,6 @@
-# ARKF, 知识森林AR可视化系统
+# ARKF,Knowledge Forest AR Visualization System, 知识森林AR可视化系统
 > 西安交通大学，陕西省天地网技术重点实验室。
+> Shannxi Key Lab. of Satellite-Terrestrial Network Tech. R&D , Xi'an JiaoTong University.
 
 ## 描述
 ARKF是一款AR导航学习系统。相比传统的教育应用，我们将爆炸式增长的知识聚合成新型知识图谱——知识森林，将知识以更生动，更富有趣味的方式展示出来，利用AR技术将知识森林进行了三维的可视化。
