@@ -36,7 +36,7 @@ ARKF已经包含6门计算机学科的高等教育课程，5门小学课程，23
 Shannxi Key Lab. of Satellite-Terrestrial Network Tech. R&D , Xi'an JiaoTong University.
 
 
-[Top](#ARKF-Knowledge-Forest-AR-Visualization-System-知识森林AR可视化系统 "Go to top")
+[Top](#arkf-knowledge-forest-ar-visualization-system-知识森林ar可视化系统 "Go to top")
 ---
 End
 
