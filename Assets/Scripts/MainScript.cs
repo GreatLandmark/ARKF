@@ -77,7 +77,7 @@ public class MainScript : MonoBehaviour
     private Point xyLow;    // 定义追踪框的左上角坐标
     private Point xyHigh;   // 定义追踪框的右下角坐标
     private int TimeFlag;
-    private int TIMEFLAG = 3;
+    private int TIMEFLAG = 1;
 
     /*
      * Collider按钮部分
@@ -274,24 +274,26 @@ public class MainScript : MonoBehaviour
                     vuforiaBackgroundPlane.GetComponent<Renderer>().material.mainTexture = tempFrame;
                 }
             }
+            return;
         }
 
         // 在OCR与API1返回正确的结果后进入
 
-        // OCR确定关键词信息和追踪区域后初始化Tracker时调用
-        if (TrackingFlag == 1 && TimeFlag == TIMEFLAG)
-        {
+        // OCR确定关键词信息和追踪区域后初始化Tracker时调用；关键字追踪场景
+        if (TrackingFlag == 1)// && TimeFlag == TIMEFLAG)
+        {Debug.Log("TrackingFlag == 1");
             if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
             {
-                tempFrame = VuforiaRenderer.Instance.VideoBackgroundTexture;    // 取到一帧
+                //tempFrame = VuforiaRenderer.Instance.VideoBackgroundTexture;    // 取到一帧
                 Utils.textureToTexture2D(tempFrame, trackingFrameOld);
                 Utils.texture2DToMat(trackingFrameOld, trackingFrame, true, -1);   // 将帧转换成Mat处理
                 Imgproc.cvtColor(trackingFrame, trackingFrameGray, Imgproc.COLOR_BGR2GRAY); // 转化成灰度图计算
 
                 trackers = TrackerMOSSE.create();
 
-                if (trackers.init(trackingFrameGray, trackingWindow))  // 初始化追踪
+                if (trackers.init(trackingFrame, trackingWindow))  // 初始化追踪
                 {
+                    Debug.Log("trackers.init()");
                     DrawTrackingAndButton();    // 绘制关键词的追踪框和button
 
                     Utils.matToTexture2D(trackingFrame, trackingFrameNew, true, -1);   // 将Mat格式的frame转换成Texture2D
@@ -309,8 +311,8 @@ public class MainScript : MonoBehaviour
             }
         }
 
-        // Tracker初始化正常，追踪阶段（更新Tracker阶段）调用
-        if (TrackingFlag == 2 && TimeFlag == TIMEFLAG)
+        // Tracker初始化正常，追踪阶段（更新Tracker阶段）调用；关键字追踪场景
+        if (TrackingFlag == 2)// && TimeFlag == TIMEFLAG)
         {
             if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
             {
@@ -318,11 +320,11 @@ public class MainScript : MonoBehaviour
                 Utils.textureToTexture2D(tempFrame, trackingFrameOld);
                 Utils.texture2DToMat(trackingFrameOld, trackingFrame, true, -1);   // 将帧转换成Mat处理
                 Imgproc.cvtColor(trackingFrame, trackingFrameGray, Imgproc.COLOR_BGR2GRAY);
-
-                if (trackers.update(trackingFrameGray, trackingWindow))    // 更新追踪器
+Debug.Log("TrackingFlag == 2 ");
+                if (trackers.update(trackingFrame, trackingWindow))    // 更新追踪器
                 {
                     TimeFlag = 1;
-
+Debug.Log("trackers update"); 
                     // 计算新的追踪框的位置
                     xyLow.x = trackingWindow.x;
                     xyLow.y = trackingWindow.y;
@@ -353,50 +355,51 @@ public class MainScript : MonoBehaviour
                     if (vuforiaBackgroundPlane != null)
                     {
                         vuforiaBackgroundPlane.GetComponent<Renderer>().material.mainTexture = trackingFrameNew;    // 绘制处理后的图像
+                    Debug.Log("vuforiaBackgroundPlane != null");
                     }
                 }
             }
         }
+#region Timgflag
+        // 每次time标志位没有到达TIMEFLAG值的时候正常刷新；关键字追踪场景
+        // if (TimeFlag != TIMEFLAG && TrackingFlag != 3 && TrackingFlag != 4 && TrackingFlag != 5 && TrackingFlag != 0)
+        // {
+        //     TimeFlag++;
+        //     if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
+        //     {
+        //         tempFrame = VuforiaRenderer.Instance.VideoBackgroundTexture;    // 取到一帧
+        //         Utils.textureToTexture2D(tempFrame, trackingFrameOld);
+        //         Utils.texture2DToMat(trackingFrameOld, trackingFrame, true, -1);   // 将帧转换成Mat处理
 
-        // 每次time标志位没有到达TIMEFLAG值的时候正常刷新
-        if (TimeFlag != TIMEFLAG && TrackingFlag != 3 && TrackingFlag != 4 && TrackingFlag != 5 && TrackingFlag != 0)
-        {
-            TimeFlag++;
-            if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
-            {
-                tempFrame = VuforiaRenderer.Instance.VideoBackgroundTexture;    // 取到一帧
-                Utils.textureToTexture2D(tempFrame, trackingFrameOld);
-                Utils.texture2DToMat(trackingFrameOld, trackingFrame, true, -1);   // 将帧转换成Mat处理
+        //         DrawTrackingAndButton();
 
-                DrawTrackingAndButton();
+        //         if (Input.GetMouseButton(0))
+        //         {
+        //             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //             RaycastHit hit;
 
-                if (Input.GetMouseButton(0))
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
+        //             if (Physics.Raycast(ray, out hit))
+        //             {
+        //                 GameObject clickedGameObjectHere = hit.collider.gameObject;
+        //                 if (clickedGameObjectHere.tag == "CubeButton")
+        //                 {
+        //                     int clickedName = int.Parse(clickedGameObjectHere.name);
+        //                     InitializeGroundPlane(items[clickedName], domainID);
+        //                 }
+        //             }
+        //         }
 
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        GameObject clickedGameObjectHere = hit.collider.gameObject;
-                        if (clickedGameObjectHere.tag == "CubeButton")
-                        {
-                            int clickedName = int.Parse(clickedGameObjectHere.name);
-                            InitializeGroundPlane(items[clickedName], domainID);
-                        }
-                    }
-                }
+        //         Utils.matToTexture2D(trackingFrame, trackingFrameNew, true, -1);   // 将Mat格式的frame转换成Texture2D
 
-                Utils.matToTexture2D(trackingFrame, trackingFrameNew, true, -1);   // 将Mat格式的frame转换成Texture2D
-
-                BackgroundPlaneBehaviour vuforiaBackgroundPlane = FindObjectOfType<BackgroundPlaneBehaviour>(); //获取屏幕
-                if (vuforiaBackgroundPlane != null)
-                {
-                    vuforiaBackgroundPlane.GetComponent<Renderer>().material.mainTexture = trackingFrameNew;
-                }
-            }
-        }
-
-        // 用户确定查看关键词，进入AR阶段
+        //         BackgroundPlaneBehaviour vuforiaBackgroundPlane = FindObjectOfType<BackgroundPlaneBehaviour>(); //获取屏幕
+        //         if (vuforiaBackgroundPlane != null)
+        //         {
+        //             vuforiaBackgroundPlane.GetComponent<Renderer>().material.mainTexture = trackingFrameNew;
+        //         }
+        //     }
+        // }
+#endregion
+        // 用户确定查看关键词，进入AR阶段，一棵树的场景。
         if (TrackingFlag == 3)
         {
             if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
@@ -730,14 +733,12 @@ public class MainScript : MonoBehaviour
             // 进入沙盘场景
             if (resultID.ToString() == "0")
             {
-                if (statusFlag == 2)
+                if (statusFlag != 1)
                 {
-                    statusFlag = 3;
-                    restartButton.SetActive(true);
+                    //statusFlag = 3;
+                     restartButton.SetActive(true);
                 }
-                //else { statusFlag = 99; }
-
-                //startButton.SetActive(false);
+                
                 int clustersNum = int.Parse(resultsNum.ToString());
 
                 if (clustersNum == 0)
@@ -748,13 +749,14 @@ public class MainScript : MonoBehaviour
                 }
                 else if (clustersNum == 1)//只有一门课程
                 {
+                    statusFlag=4;
                     JsonData resultClusterName = resultJson["results"][0][0];
 
                     NewAPI2Start(resultClusterName.ToString());
                 }
                 else//多门课程。展示课程列表。
                 {
-
+                        statusFlag=3;
                     JsonData resultsClusters = resultJson["results"][0];
 
                     clusterChoice.SetActive(true);
@@ -778,7 +780,7 @@ public class MainScript : MonoBehaviour
                     }
                 }
             }
-            // 直接进入树场景
+            // 关键词跟踪场景
             else
             {
 
@@ -787,9 +789,12 @@ public class MainScript : MonoBehaviour
                 if (wordsNum == 0)
                 {
                     tipsText.text = "对不起，您拍摄的页面没有识别到关键词\n请尝试重新拍摄";
+                restartButton.SetActive(true);
+                startButton.SetActive(true);
                 }
                 else
                 {
+                    statusFlag=8;
                     domainID = resultJson["domain_id"].ToString();
 
                     GetResult(wordsNum);   // 获取关键词位置
@@ -809,15 +814,15 @@ public class MainScript : MonoBehaviour
                     trackingWindow = new Rect2d(xyLow, xyHigh);
 
                     // 创建各种图像资源的引用
-                    if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
-                    {
-                        tempFrame = VuforiaRenderer.Instance.VideoBackgroundTexture;    // 取帧Texture
+                    // if (VuforiaRenderer.Instance != null && VuforiaRenderer.Instance.VideoBackgroundTexture != null)
+                    // {
+                        //tempFrame = VuforiaRenderer.Instance.VideoBackgroundTexture;    // 取帧Texture
                         trackingFrameOld = new Texture2D(tempFrame.width, tempFrame.height, TextureFormat.RGB24, false);    // 取帧Texture2D
                         Utils.textureToTexture2D(tempFrame, trackingFrameOld);
                         trackingFrame = new Mat(trackingFrameOld.height, trackingFrameOld.width, CvType.CV_8UC3);   // 构造Mat
                         trackingFrameGray = new Mat(trackingFrameOld.height, trackingFrameOld.width, CvType.CV_8UC1);   // 灰度图Mat
                         trackingFrameNew = new Texture2D(trackingFrame.cols(), trackingFrame.rows(), TextureFormat.RGB24, false);  // 初始化新的Vuforia帧
-                    }
+                    // }
 
                     TrackingFlag = 1;   // 将TrackingFlag置1，开启识别模式
                 }
@@ -1553,6 +1558,7 @@ public class MainScript : MonoBehaviour
             }
             // 关闭追踪器
             trackers.Dispose();
+            TrackingFlag=0;
         }
 
         if (TrackingFlag == 4)
